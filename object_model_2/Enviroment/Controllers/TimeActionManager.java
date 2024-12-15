@@ -39,7 +39,7 @@ public class TimeActionManager {
     };
 
 
-    public void Delete(ArrayList<Interactions>  ListDelete){
+    private void Delete(ArrayList<Interactions>  ListDelete){
         for(Interactions interaction: ListDelete){
             this.DiffTimeInteractions.remove(interaction);
         }
