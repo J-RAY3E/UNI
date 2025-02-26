@@ -1,0 +1,9 @@
+show
+help
+add Mario3
+234
+DEVELOPER
+HIRED
+2233
+232
+show
