@@ -9,13 +9,16 @@ import org.example.Classes.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class ReadJSON {
 
     final FileInputManager fileInputManager;
-    public ReadJSON(FileInputManager fileInputManager) {
-        this.fileInputManager = fileInputManager;
+    public ReadJSON (String  DataVariable ) throws FileNotFoundException {
+        this.fileInputManager = new FileInputManager(System.getenv(DataVariable));
     }
 
     public void loadData(CollectionManager storageManager) {
@@ -31,10 +34,9 @@ public class ReadJSON {
                 storageManager.updateId(worker.getId());
             }
 
+            System.out.println("Data loaded successfully.");
         } catch (Exception e) {
             System.out.println("Error at moment reading file, there is no type JSON");
         }
-
-        System.out.println("Data loaded successfully.");
     }
 }

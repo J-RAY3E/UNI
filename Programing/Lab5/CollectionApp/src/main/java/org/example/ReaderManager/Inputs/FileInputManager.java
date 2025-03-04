@@ -1,9 +1,6 @@
 package org.example.ReaderManager.Inputs;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 public class FileInputManager implements InputManager{
 
@@ -44,4 +41,24 @@ public class FileInputManager implements InputManager{
         }
     }
 
+    public static boolean isAvailablePath(String filePath) {
+        if (filePath == null || filePath.isEmpty()) {
+            System.out.println("Error: Empty file path.");
+            return false;
+        }
+        File file = new File(filePath);
+        System.out.println(file.getAbsolutePath());
+        if (!file.exists()) {
+            System.out.println("Error: File no exists: " + filePath);
+            return false;
+        }
+
+        if (!file.canRead()) {
+            System.out.println("Error: No lecture permissions: " + filePath);
+            return false;
+        }
+
+        return true;
+
+    }
 }

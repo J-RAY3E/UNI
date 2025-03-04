@@ -9,9 +9,9 @@ import org.example.Storage.CollectionManager;
 
 public class Help extends CommandOut {
 
-    HashMap<String,Command> commands;
+    HashMap<Integer, HashMap<String, Command>> commands;
 
-    public Help(HashMap<String,Command> commands, CollectionManager storageManager){
+    public Help(HashMap<Integer, HashMap<String, Command>> commands, CollectionManager storageManager){
         super(storageManager);
         this.commands = commands;
     }
@@ -22,11 +22,13 @@ public class Help extends CommandOut {
     }
     
     @Override
-    public void execute(String  ...args){
-        for(Command command:  commands.values()){
-            System.out.println(command.description());
-        }
+    public void execute(String  ...args) {
+        commands.values().forEach((commands) -> {
+            for (Command command : commands.values()) {
+                System.out.println(command.description());
+            }
+        });
+
 
     }
-    
 }

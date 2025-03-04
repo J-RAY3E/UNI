@@ -1,0 +1,11 @@
+help
+add Mario
+COOK
+FIRED
+34
+23
+12
+
+n
+execute_file ./Data/data1.txt
+help

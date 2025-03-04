@@ -1,0 +1,11 @@
+show
+help
+add Mario3
+DEVELOPER
+HIRED
+34
+23
+232
+
+n
+show
