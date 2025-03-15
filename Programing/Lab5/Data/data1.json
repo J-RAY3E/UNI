@@ -1,0 +1,43 @@
+[ {
+  "id" : 1541,
+  "name" : "Mario",
+  "coordinates" : {
+    "x" : 23,
+    "y" : 12.0
+  },
+  "creationDate" : "2025-03-13T15:56:27",
+  "salary" : 34,
+  "endDate" : null,
+  "position" : "COOK",
+  "status" : "FIRED",
+  "organization" : null,
+  "coordinateX" : 23,
+  "coordinateY" : 12.0,
+  "organizationStr" : "",
+  "endDateStr" : "",
+  "salaryStr" : "34",
+  "positionStr" : "Position: COOK",
+  "statusStr" : "Status: FIRED",
+  "idStr" : "1541"
+}, {
+  "id" : 844,
+  "name" : "Mario3",
+  "coordinates" : {
+    "x" : 23,
+    "y" : 232.0
+  },
+  "creationDate" : "2025-03-13T15:56:27",
+  "salary" : 34,
+  "endDate" : null,
+  "position" : "DEVELOPER",
+  "status" : "HIRED",
+  "organization" : null,
+  "coordinateX" : 23,
+  "coordinateY" : 232.0,
+  "organizationStr" : "",
+  "endDateStr" : "",
+  "salaryStr" : "34",
+  "positionStr" : "Position: DEVELOPER",
+  "statusStr" : "Status: HIRED",
+  "idStr" : "844"
+} ]
