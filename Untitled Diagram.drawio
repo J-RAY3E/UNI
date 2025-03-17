@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.1.1">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="3987" dy="2433" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3563" dy="2204" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -54,7 +54,7 @@
             <mxRectangle width="68" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="iPoyVzdUT_Glv2zfnzg3-17" value="date_Birthday DATE NOT NULL" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" parent="iPoyVzdUT_Glv2zfnzg3-15" vertex="1">
+        <mxCell id="iPoyVzdUT_Glv2zfnzg3-17" value="birth_date DATE NOT NULL" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" parent="iPoyVzdUT_Glv2zfnzg3-15" vertex="1">
           <mxGeometry x="68" width="242" height="30" as="geometry">
             <mxRectangle width="242" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -291,7 +291,7 @@
             <mxRectangle width="265" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="iPoyVzdUT_Glv2zfnzg3-88" value="Passanger" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="iPoyVzdUT_Glv2zfnzg3-88" value="Passenger" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-837" y="-47" width="360" height="90" as="geometry" />
         </mxCell>
         <mxCell id="iPoyVzdUT_Glv2zfnzg3-89" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" parent="iPoyVzdUT_Glv2zfnzg3-88" vertex="1">
@@ -302,7 +302,7 @@
             <mxRectangle width="80" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="iPoyVzdUT_Glv2zfnzg3-91" value="passanger_id&amp;nbsp; SERIAL NOT NULL" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" parent="iPoyVzdUT_Glv2zfnzg3-89" vertex="1">
+        <mxCell id="iPoyVzdUT_Glv2zfnzg3-91" value="passenger_id&amp;nbsp; SERIAL NOT NULL" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" parent="iPoyVzdUT_Glv2zfnzg3-89" vertex="1">
           <mxGeometry x="80" width="280" height="30" as="geometry">
             <mxRectangle width="280" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -334,7 +334,7 @@
             <mxRectangle width="64" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="iPoyVzdUT_Glv2zfnzg3-105" value="id SERIAL NOT NULL" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" parent="iPoyVzdUT_Glv2zfnzg3-103" vertex="1">
+        <mxCell id="iPoyVzdUT_Glv2zfnzg3-105" value="place_id SERIAL NOT NULL" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" parent="iPoyVzdUT_Glv2zfnzg3-103" vertex="1">
           <mxGeometry x="64" width="226" height="30" as="geometry">
             <mxRectangle width="226" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -409,7 +409,7 @@
             <mxRectangle width="98" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="IphEw1jB7qVJTpc6AcwF-18" value="place_posible_to_see&amp;nbsp; INTEGER" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" parent="IphEw1jB7qVJTpc6AcwF-16" vertex="1">
+        <mxCell id="IphEw1jB7qVJTpc6AcwF-18" value="place_possible_to_see&amp;nbsp; INTEGER" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" parent="IphEw1jB7qVJTpc6AcwF-16" vertex="1">
           <mxGeometry x="98" width="345" height="30" as="geometry">
             <mxRectangle width="345" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -489,7 +489,7 @@
             <mxRectangle width="80" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="aBGHjK8zelmEAhZDFWWJ-36" value="passanger_id&amp;nbsp;&amp;nbsp;INTEGER NOT NULL" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="aBGHjK8zelmEAhZDFWWJ-34">
+        <mxCell id="aBGHjK8zelmEAhZDFWWJ-36" value="passenger_id&amp;nbsp;&amp;nbsp;INTEGER NOT NULL" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="aBGHjK8zelmEAhZDFWWJ-34">
           <mxGeometry x="80" width="280" height="30" as="geometry">
             <mxRectangle width="280" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -497,7 +497,7 @@
         <mxCell id="IphEw1jB7qVJTpc6AcwF-94" value="" style="line;strokeWidth=2;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="-280" y="-306" width="360" height="10" as="geometry" />
         </mxCell>
-        <mxCell id="aBGHjK8zelmEAhZDFWWJ-16" value="Passanger_Travel_Car" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="aBGHjK8zelmEAhZDFWWJ-16" value="Passenger_Travel_Car" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="-350" y="10" width="430" height="120" as="geometry" />
         </mxCell>
         <mxCell id="aBGHjK8zelmEAhZDFWWJ-20" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="aBGHjK8zelmEAhZDFWWJ-16">
@@ -508,7 +508,7 @@
             <mxRectangle width="96" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="aBGHjK8zelmEAhZDFWWJ-22" value="passanger_id INTEGER NOT NULL UNIQUE" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="aBGHjK8zelmEAhZDFWWJ-20">
+        <mxCell id="aBGHjK8zelmEAhZDFWWJ-22" value="passenger_id INTEGER NOT NULL UNIQUE" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="aBGHjK8zelmEAhZDFWWJ-20">
           <mxGeometry x="96" width="334" height="30" as="geometry">
             <mxRectangle width="334" height="30" as="alternateBounds" />
           </mxGeometry>
