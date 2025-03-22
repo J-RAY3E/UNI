@@ -1,63 +1,89 @@
 package org.example.Storage;
-import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.stream.IntStream;
 
 import org.example.Classes.Worker;
 import org.example.ReaderManager.ManagerID;
 import org.example.ReaderManager.Parse.ReadJSON;
-import org.example.ReaderManager.StackInputs;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
-public class CollectionManager {
+/**
+ * Manages the collection of Worker objects, providing functionality
+ * for data loading, retrieval, and storage operations.
+ */
+public final class CollectionManager {
 
-    private final java.time.LocalDateTime dataCreation;
+    private final LocalDateTime dataCreation;
     private final String classList;
-
-    private final LinkedList<Worker> collection;
+    private final String localFile;
+    private final SortedLinkedList<Worker> collection;
     private final ManagerID managerID;
 
-
+    /**
+     * Constructs a CollectionManager and initializes storage-related fields.
+     */
     public CollectionManager() {
-        this.collection = new LinkedList<>();
+        this.collection = new SortedLinkedList<>();
         this.dataCreation = LocalDateTime.now();
         this.classList = collection.getClass().toString();
-        this.managerID = new ManagerID(5);
+        this.managerID = new ManagerID();
+        this.localFile = System.getenv("data");
     }
+
+    /**
+     * Loads data from a JSON file into the collection.
+     */
     public void load() {
-        try{
-            new ReadJSON(System.getenv("data")).loadData(this) ;
+        try {
+            new ReadJSON(this.localFile).loadData(this);
         } catch (Exception e) {
             System.out.println("No data loaded in the collection");
         }
     }
-    public LinkedList<Worker> getCollection(){
+
+    /**
+     * Gets the file path of the data source.
+     * @return the file path as a string.
+     */
+    public String getLocalFile() {
+        return this.localFile;
+    }
+
+    /**
+     * Gets the collection of Worker objects.
+     * @return the sorted linked list of workers.
+     */
+    public SortedLinkedList<Worker> getCollection() {
         return collection;
     }
 
-    public Integer getID(){
-        return managerID.generateID();
+    /**
+     * Gets the ManagerID instance for handling unique identifiers.
+     * @return the ManagerID instance.
+     */
+    public ManagerID getManagerID() {
+        return managerID;
     }
 
-    public String getClassList(){
+    /**
+     * Gets the name of the class that represents the collection.
+     * @return the class name.
+     */
+    public String getClassList() {
         return this.classList;
     }
 
-    public void addElement(Worker record){
-        this.collection.addLast(record);
+    /**
+     * Provides information about the collection.
+     * @return a formatted string with collection details.
+     */
+    public String getInfo() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return String.format(
+                "Data creation: %s%nNumber of elements: %d%nStorage: %s%n",
+                this.dataCreation.format(formatter), this.collection.size(), this.getClassList()
+        );
     }
-
-    public String getInfo(){
-        DateTimeFormatter dataCasted = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return String.format("Data creation: %s  %nNumber of element: %d %nStorage: %s %n",this.dataCreation.format(dataCasted),this.collection.size(),this.getClassList());
-    }
-
-
-
 }
+

@@ -1,5 +1,4 @@
 show
-help
 add Mario3
 DEVELOPER
 HIRED

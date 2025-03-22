@@ -1,15 +1,29 @@
 package org.example.Classes;
 
-public class Organization {
+/**
+ * Represents an organization with basic details.
+ */
+public final class Organization {
+
     private String fullName;
     private int annualTurnover;
     private Integer employeesCount;
     private Address postalAddress;
 
+    /**
+     * Default constructor.
+     */
     public Organization() {
     }
 
-    // Constructor con campos
+    /**
+     * Constructor specifying organization details.
+     *
+     * @param fullName       The full name of the organization.
+     * @param annualTurnover The annual turnover of the organization.
+     * @param employeesCount The number of employees.
+     * @param postalAddress  The postal address of the organization.
+     */
     public Organization(String fullName, int annualTurnover, Integer employeesCount, Address postalAddress) {
         this.fullName = fullName;
         this.annualTurnover = annualTurnover;
@@ -17,7 +31,6 @@ public class Organization {
         this.postalAddress = postalAddress;
     }
 
-    // Getters y setters
     public String getFullName() {
         return fullName;
     }
@@ -52,7 +65,7 @@ public class Organization {
 
     @Override
     public String toString() {
-        return String.format("Full Name: %s AnnualTurnover: %d Employees Count: %d Address: %s",
-                this.fullName, this.annualTurnover, this.employeesCount, this.postalAddress.toString());
+        return String.format("Full Name: %s, Annual Turnover: %d, Employees Count: %d, Address: %s",
+                fullName, annualTurnover, employeesCount, postalAddress);
     }
 }

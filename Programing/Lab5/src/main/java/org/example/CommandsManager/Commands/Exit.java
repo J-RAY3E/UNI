@@ -6,17 +6,28 @@ import org.example.ReaderManager.Inputs.Response;
 import org.example.Storage.CollectionManager;
 
 
-public class Exit extends Command {
 
-    public Exit(CollectionManager storageManager,Integer numArguments) {
-        super(storageManager,numArguments);
+/**
+ * Command to exit the program.
+ */
+public final class Exit extends Command {
+
+    /**
+     * Constructs an Exit command.
+     * @param storageManager the collection manager instance.
+     * @param numArguments the expected number of arguments.
+     */
+    public Exit(CollectionManager storageManager, Integer numArguments) {
+        super(storageManager, numArguments);
     }
+
     @Override
-    public String description(){
+    public String description() {
         return "exit - close program";
-    };
+    }
+
     @Override
-    public Response execute(String  ...args){
-        return  new Response(this.getClass().toString(), RequestState.EXIT);
-    };
+    public Response execute(String... args) {
+        return new Response(this.getClass().getName(), RequestState.EXIT);
+    }
 }

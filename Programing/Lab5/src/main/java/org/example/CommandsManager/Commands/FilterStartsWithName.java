@@ -10,30 +10,31 @@ import java.util.stream.Collectors;
 
 
 /**
- * Command to display all elements in the collection.
+ * Command to filter elements by name substring.
  */
-public final class Show extends Command {
+public final class FilterStartsWithName extends Command {
 
     /**
-     * Constructs a Show command.
+     * Constructs a FilterStartsWithName command.
      * @param storageManager the collection manager instance.
      * @param numArguments the expected number of arguments.
      */
-    public Show(CollectionManager storageManager, Integer numArguments) {
+    public FilterStartsWithName(CollectionManager storageManager, Integer numArguments) {
         super(storageManager, numArguments);
     }
 
     @Override
     public String description() {
-        return "show - show all elements information from the object collection";
+        return "filter_starts_with_name {name} - print all elements that contain the substring in their name";
     }
 
     @Override
     public Response execute(String... args) {
         try {
             String output = this.collectionManager.getCollection().stream()
+                    .filter(worker -> worker.getName().toLowerCase().startsWith(args[0].toLowerCase()))
                     .map(Worker::getInfo)
-                    .collect(Collectors.joining(""));
+                    .collect(Collectors.joining("\n"));
 
             if (!output.isEmpty()) {
                 return new Response(output, RequestState.RETURNED);

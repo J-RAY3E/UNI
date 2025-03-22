@@ -9,26 +9,42 @@ import org.example.Storage.CollectionManager;
 
 import java.util.stream.Collectors;
 
-public class RemoveById extends Command {
+/**
+ * Command to remove an element by its ID.
+ */
+public final class RemoveById extends Command {
 
-    public RemoveById(CollectionManager collectionManager,Integer numArguments){
+    /**
+     * Constructs a RemoveById command.
+     * @param collectionManager the collection manager instance.
+     * @param numArguments the expected number of arguments.
+     */
+    public RemoveById(CollectionManager collectionManager, Integer numArguments) {
         super(collectionManager, numArguments);
     }
+
     @Override
-    public String description(){
-        return "remove_by_id - close program";
-    };
+    public String description() {
+        return "remove_by_id - remove an element by the given ID";
+    }
+
     @Override
-    public Response execute(String... args){
-        this.collectionManager.getCollection().removeIf(Worker ->  Worker.getId() ==  Integer.parseInt(args[0]));
+    public Response execute(String... args) {
         try {
-            String output = this.collectionManager.getCollection().stream().filter(Worker -> Worker.getName().contains(args[0])).map(Worker::getInfo).collect(Collectors.joining("\n"));
-            if(!output.isEmpty()){
+            this.collectionManager.getCollection().removeIf(worker -> worker.getId() == Integer.parseInt(args[0]));
+            String output = this.collectionManager.getCollection().stream()
+                    .filter(worker -> worker.getName().contains(args[0]))
+                    .map(Worker::getInfo)
+                    .collect(Collectors.joining("\n"));
+
+            if (!output.isEmpty()) {
                 return new Response(output, RequestState.RETURNED);
             }
-            return new Response(this.getClass().toString(), RequestState.DONE);
-        } catch (Exception e){
-            return new Response(e.getMessage() + " in command"  + this.getClass(), RequestState.ERROR);
+            return new Response(this.getClass().getSimpleName(), RequestState.DONE);
+        } catch (NumberFormatException e) {
+            return new Response("ID should be an integer value", RequestState.ERROR);
+        } catch (NullPointerException e) {
+            return new Response("ID value not found", RequestState.ERROR);
         }
-    };
+    }
 }

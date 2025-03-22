@@ -1,7 +1,6 @@
 package org.example.Enums;
 
 public enum RequestState {
-    DONE,
-    ERROR, EXIT, RETURNED;
+    DONE, ERROR, EXIT, RETURNED;
 
 }

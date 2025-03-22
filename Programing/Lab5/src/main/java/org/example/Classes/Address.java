@@ -2,7 +2,7 @@ package org.example.Classes;
 
 
 
-public class Address {
+public final class Address {
     private String zipCode; 
 
     public Address(String zipCode) {

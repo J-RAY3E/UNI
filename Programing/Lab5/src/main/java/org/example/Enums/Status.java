@@ -1,5 +1,7 @@
 package org.example.Enums;
 
+import java.util.Arrays;
+
 public enum Status {
     FIRED,
     HIRED,
@@ -7,13 +9,5 @@ public enum Status {
     REGULAR,
     PROBATION;
 
-    public static Status getFromString(String string){
 
-        for(Status status: Status.values()){
-            if(status.name().equals(string.toUpperCase())){
-                return status;
-            }
-        }
-        return null;
-    }
 }

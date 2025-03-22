@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 import java.util.Date;
 
-public class Worker {
+public final class Worker implements  Comparable<Worker> {
 
     private int id;
     private String name;
@@ -95,7 +95,7 @@ public class Worker {
     }
     @JsonIgnore
     public String getEndDateStr() {
-        return this.endDate == null ? "" : "End-Date: " + new SimpleDateFormat("yyyy-MM-dd").format(this.endDate);
+        return this.endDate == null ? "End-Date: null"  : "End-Date: " + new SimpleDateFormat("yyyy-MM-dd").format(this.endDate);
     }
 
     public Position getPosition() {
@@ -134,9 +134,14 @@ public class Worker {
     public String getStatusStr() {
         return this.position==null ? "" : "Status: "+this.status.toString();
     }
-
+    @JsonIgnore
     public String  getInfo() {
         return String.format("ID: %s Name: %s %s Salary: %s %s %s %s Date-Creation %s %s %n",
                 this.getIdStr(), this.getName(), this.getCoordinates(), this.getSalaryStr(), this.getPositionStr(), this.getStatusStr(),this.getOrganizationStr(), this.getCreationDate().toLocalDate(),this.getEndDateStr());
+    }
+
+    @Override
+    public int compareTo(Worker worker) {
+        return this.getName().compareTo(worker.getName());
     }
 }

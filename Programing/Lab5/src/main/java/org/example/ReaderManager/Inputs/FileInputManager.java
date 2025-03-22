@@ -1,86 +1,111 @@
 package org.example.ReaderManager.Inputs;
+
 import java.io.*;
 
-public class FileInputManager implements InputManager{
+/**
+ * Handles input from files, providing line-by-line reading functionality.
+ */
+public final class FileInputManager implements InputManager {
+
     private final BufferedInputStream reader;
-    private final StringBuilder buffer = new StringBuilder();
     private final String path;
+
+    /**
+     * Constructs a FileInputManager instance.
+     * @param path the file path.
+     * @throws FileNotFoundException if the file is not found.
+     */
     public FileInputManager(final String path) throws FileNotFoundException {
         this.path = path;
         this.reader = new BufferedInputStream(new FileInputStream(path));
     }
 
+    /**
+     * Retrieves the file path.
+     * @return the file path.
+     */
     public String getPath() {
         return path;
     }
 
-    public String nextLine(){
-        this.buffer.setLength(0);
+    /**
+     * Reads the next line from the file.
+     * @return the next line as a string.
+     */
+    public String nextLine() {
+        StringBuilder buffer = new StringBuilder();
         int data;
         try {
             while ((data = reader.read()) != -1) {
                 char c = (char) data;
-                if (c == '\n') break;
-                if (c != '\r') buffer.append(c);
+                if (c == '\n') {
+                    break;
+                }
+                if (c != '\r') {
+                    buffer.append(c);
+                }
             }
-
-            if (buffer.isEmpty() && data == -1) {
-                return null;
-            };
             return buffer.toString();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error reading file: " + e.getMessage());
             return null;
         }
     }
 
+    /**
+     * Checks if the file has more lines.
+     * @return true if more lines exist, false otherwise.
+     */
     @Override
     public Boolean hasNextLine() {
         try {
             reader.mark(1);
-            if((reader.read()) != -1){
+            if (reader.read() != -1) {
                 reader.reset();
                 return true;
-            };
-            return false;
+            }
+        } catch (IOException e) {
+            System.err.println("Error checking file: " + e.getMessage());
         }
-        catch(IOException e ){
-                return false;
-        }
+        return false;
     }
 
+    /**
+     * Reads the entire file content as a single string.
+     * @return the file content.
+     */
     public String readAll() {
-        StringBuilder content = new StringBuilder();
-        int data;
-        try {
-            while ((data = reader.read()) != -1) {
-                content.append((char) data);
+        try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(reader))) {
+            StringBuilder content = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                content.append(line).append("\n");
             }
             return content.toString().trim();
         } catch (IOException e) {
-            throw new RuntimeException("It was not possible  read the actual file", e);
+            throw new RuntimeException("Error reading file", e);
         }
     }
 
+    /**
+     * Checks if a given file path is valid and readable.
+     * @param filePath the file path.
+     * @return true if the file exists and is readable.
+     */
     public static boolean isAvailablePath(String filePath) {
         if (filePath == null || filePath.isEmpty()) {
-            System.out.println("Error: Empty file path.");
+            System.err.println("Error: Empty file path.");
             return false;
         }
         File file = new File(filePath);
-        System.out.println(file.getAbsolutePath());
         if (!file.exists()) {
-            System.out.println("Error: File no exists: " + filePath);
+            System.err.println("Error: File does not exist - " + filePath);
             return false;
         }
-
         if (!file.canRead()) {
-            System.out.println("Error: No lecture permissions: " + filePath);
+            System.err.println("Error: No read permission - " + filePath);
             return false;
         }
-
         return true;
-
     }
-
 }
