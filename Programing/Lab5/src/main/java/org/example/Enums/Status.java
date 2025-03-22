@@ -1,6 +1,4 @@
-package org.example.Enums;
-
-import java.util.Arrays;
+package org.example.enums;
 
 public enum Status {
     FIRED,

@@ -1,8 +1,8 @@
-package org.example.CommandsManager.Commands.CommnadClasses;
+package org.example.commandsManager.commands.CommnadClasses;
 
-import org.example.Enums.RequestState;
-import org.example.ReaderManager.Inputs.Response;
-import org.example.Storage.CollectionManager;
+import org.example.enums.RequestState;
+import org.example.readerManager.inputs.Response;
+import org.example.storage.CollectionManager;
 
 public abstract class Command {
 

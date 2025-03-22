@@ -1,4 +1,4 @@
-package org.example.ReaderManager.Inputs;
+package org.example.readerManager.inputs;
 
 /**
  * Represents a user request containing a command and its parameters.

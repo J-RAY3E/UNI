@@ -1,12 +1,12 @@
-package org.example.CommandsManager.Commands;
+package org.example.commandsManager.commands;
 
-import org.example.CommandsManager.Commands.CommnadClasses.Command;
-import org.example.Enums.RequestState;
-import org.example.ReaderManager.Inputs.InputValidator;
-import org.example.ReaderManager.Inputs.InputManagerRegistry;
-import org.example.ReaderManager.Inputs.Response;
-import org.example.ReaderManager.Validators.ValidationDate;
-import org.example.Storage.CollectionManager;
+import org.example.commandsManager.commands.CommnadClasses.Command;
+import org.example.enums.RequestState;
+import org.example.readerManager.inputs.InputValidator;
+import org.example.readerManager.inputs.InputManagerRegistry;
+import org.example.readerManager.inputs.Response;
+import org.example.readerManager.validators.ValidationDate;
+import org.example.storage.CollectionManager;
 
 
 import java.time.LocalDate;

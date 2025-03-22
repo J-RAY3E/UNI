@@ -1,4 +1,4 @@
-package org.example.ReaderManager;
+package org.example.readerManager;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Manages unique ID generation for entities in the collection.
  */
-public final class ManagerID {
+public final class ManagerId {
 
     private final List<Integer> ids = new LinkedList<>();
     private Integer currIdx = 0;

@@ -1,6 +1,6 @@
-package org.example.ReaderManager;
+package org.example.readerManager;
 
-import org.example.ReaderManager.Inputs.Response;
+import org.example.readerManager.inputs.Response;
 
 /**
  * ResponseHandler processes the responses of the executed commands.

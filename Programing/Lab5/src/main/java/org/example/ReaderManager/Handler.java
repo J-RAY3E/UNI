@@ -1,9 +1,9 @@
-package org.example.ReaderManager;
+package org.example.readerManager;
 
-import org.example.CommandsManager.CommandsManager;
-import org.example.ReaderManager.Inputs.InputManagerRegistry;
-import org.example.ReaderManager.Inputs.Request;
-import org.example.ReaderManager.Inputs.Response;
+import org.example.commandsManager.CommandsManager;
+import org.example.readerManager.inputs.InputManagerRegistry;
+import org.example.readerManager.inputs.Request;
+import org.example.readerManager.inputs.Response;
 
 import java.util.Arrays;
 

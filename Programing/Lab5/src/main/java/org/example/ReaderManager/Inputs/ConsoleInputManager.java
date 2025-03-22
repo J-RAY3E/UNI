@@ -1,5 +1,6 @@
-package org.example.ReaderManager.Inputs;
+package org.example.readerManager.inputs;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -30,7 +31,14 @@ public final class ConsoleInputManager implements InputManager {
      * @return the next line as a string.
      */
     public String nextLine() {
-        return reader.nextLine();
+
+        try {
+            return this.reader.nextLine();
+        } catch (NoSuchElementException | IllegalStateException e) {
+            System.out.println("\n >> Input closed. Exiting...");
+            System.exit(0);
+            return null;
+        }
     }
 
     /**

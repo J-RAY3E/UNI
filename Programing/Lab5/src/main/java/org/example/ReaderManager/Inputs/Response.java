@@ -1,6 +1,6 @@
-package org.example.ReaderManager.Inputs;
+package org.example.readerManager.inputs;
 
-import org.example.Enums.RequestState;
+import org.example.enums.RequestState;
 
 /**
  * Represents the response of a command execution.

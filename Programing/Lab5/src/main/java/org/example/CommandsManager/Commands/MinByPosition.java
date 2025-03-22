@@ -1,10 +1,10 @@
-package org.example.CommandsManager.Commands;
+package org.example.commandsManager.commands;
 
 
-import org.example.CommandsManager.Commands.CommnadClasses.Command;
-import org.example.Enums.RequestState;
-import org.example.ReaderManager.Inputs.Response;
-import org.example.Storage.CollectionManager;
+import org.example.commandsManager.commands.CommnadClasses.Command;
+import org.example.enums.RequestState;
+import org.example.readerManager.inputs.Response;
+import org.example.storage.CollectionManager;
 
 import java.util.Comparator;
 

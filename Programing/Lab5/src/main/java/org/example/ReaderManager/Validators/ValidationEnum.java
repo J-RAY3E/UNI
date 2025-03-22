@@ -1,4 +1,4 @@
-package org.example.ReaderManager.Validators;
+package org.example.readerManager.validators;
 
 import java.util.Arrays;
 

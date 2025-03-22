@@ -1,9 +1,9 @@
-package org.example.CommandsManager.Commands;
+package org.example.commandsManager.commands;
 
-import org.example.CommandsManager.Commands.CommnadClasses.Command;
-import org.example.Enums.RequestState;
-import org.example.ReaderManager.Inputs.Response;
-import org.example.Storage.CollectionManager;
+import org.example.commandsManager.commands.CommnadClasses.Command;
+import org.example.enums.RequestState;
+import org.example.readerManager.inputs.Response;
+import org.example.storage.CollectionManager;
 
 
 /**
@@ -31,7 +31,7 @@ public final class RemoveLast extends Command {
             if (this.collectionManager.getCollection().isEmpty()) {
                 return new Response("Error: Collection is already empty.", RequestState.ERROR);
             }
-            this.collectionManager.getCollection().removeLast();
+            this.collectionManager.getCollection().remove(this.collectionManager.getCollection().size()-1);
             return new Response(this.getClass().getSimpleName(), RequestState.DONE);
         } catch (Exception e) {
             return new Response("Unexpected "+e.getMessage() + " in command " + this.getClass().getSimpleName(), RequestState.ERROR);

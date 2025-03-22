@@ -1,8 +1,8 @@
-package org.example.ReaderManager.Validators;
+package org.example.readerManager.validators;
 
-import org.example.Classes.Worker;
-import org.example.Enums.Position;
-import org.example.Enums.Status;
+import org.example.classes.Worker;
+import org.example.enums.Position;
+import org.example.enums.Status;
 
 
 /**

@@ -1,10 +1,10 @@
 package org.example;
 
-import org.example.CommandsManager.CommandsManager;
-import org.example.ReaderManager.Handler;
-import org.example.ReaderManager.ResponseHandler;
-import org.example.ReaderManager.RuntimeManager;
-import org.example.Storage.CollectionManager;
+import org.example.commandsManager.CommandsManager;
+import org.example.readerManager.Handler;
+import org.example.readerManager.ResponseHandler;
+import org.example.readerManager.RuntimeManager;
+import org.example.storage.CollectionManager;
 
 /**
  * Main class that initializes the program by setting up all the necessary managers

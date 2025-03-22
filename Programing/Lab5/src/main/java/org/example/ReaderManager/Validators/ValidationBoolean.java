@@ -1,4 +1,4 @@
-package org.example.ReaderManager.Validators;
+package org.example.readerManager.validators;
 
 /**
  * Validator for Boolean values.

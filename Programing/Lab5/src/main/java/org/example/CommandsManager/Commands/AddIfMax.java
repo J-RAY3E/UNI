@@ -1,13 +1,13 @@
-package org.example.CommandsManager.Commands;
+package org.example.commandsManager.commands;
 
-import org.example.Classes.Worker;
-import org.example.CommandsManager.Commands.CommnadClasses.Command;
-import org.example.Enums.RequestState;
-import org.example.ReaderManager.CreationFactory;
-import org.example.ReaderManager.Inputs.InputValidator;
-import org.example.ReaderManager.Inputs.Response;
-import org.example.ReaderManager.Inputs.InputManagerRegistry;
-import org.example.Storage.CollectionManager;
+import org.example.classes.Worker;
+import org.example.commandsManager.commands.CommnadClasses.Command;
+import org.example.enums.RequestState;
+import org.example.readerManager.CreationFactory;
+import org.example.readerManager.inputs.InputValidator;
+import org.example.readerManager.inputs.Response;
+import org.example.readerManager.inputs.InputManagerRegistry;
+import org.example.storage.CollectionManager;
 
 /**
  * Command to add an element if its salary is the highest in the collection.

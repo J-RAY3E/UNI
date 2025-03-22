@@ -1,7 +1,8 @@
-package org.example.Storage;
+package org.example.storage;
 
 import java.util.Collections;
 import java.util.LinkedList;
+
 
 /**
  * A sorted linked list implementation that maintains its elements in a sorted order.

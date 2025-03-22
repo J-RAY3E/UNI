@@ -1,21 +1,21 @@
-package org.example.ReaderManager.Parse;
+package org.example.readerManager.parse;
 
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.example.Classes.Worker;
-import org.example.ReaderManager.Inputs.FileInputManager;
-import org.example.ReaderManager.Validators.ValidationWorker;
-import org.example.Storage.CollectionManager;
+import org.example.classes.Worker;
+import org.example.readerManager.inputs.FileInputManager;
+import org.example.readerManager.validators.ValidationWorker;
+import org.example.storage.CollectionManager;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Handles reading and parsing JSON data into the collection.
  */
-public final class ReadJSON {
+public final class ReadJson {
 
     private final FileInputManager fileInputManager;
 
@@ -24,7 +24,7 @@ public final class ReadJSON {
      * @param dataFilePath the path to the JSON file.
      * @throws FileNotFoundException if the file does not exist.
      */
-    public ReadJSON(String dataFilePath) throws FileNotFoundException {
+    public ReadJson(String dataFilePath) throws FileNotFoundException {
         this.fileInputManager = new FileInputManager(dataFilePath);
     }
 
@@ -36,19 +36,44 @@ public final class ReadJSON {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.registerModule(new JavaTimeModule());
-            String json = fileInputManager.readAll();
-            List<Worker> workers = objectMapper.readValue(json, new TypeReference<List<Worker>>() {});
+            String json = fileInputManager.readAll(); // Leer JSON como String
 
-            for (Worker worker : workers) {
-                if (storageManager.getManagerID().isValidID(worker.getId())
-                        && new ValidationWorker(false).validate(worker)) {
-                    storageManager.getManagerID().addID(worker.getId());
-                    storageManager.getCollection().add(worker);
-                }
+            json = json.trim();
+            if (!json.startsWith("[") || !json.endsWith("]")) {
+                System.err.println("Error: El JSON no es un array válido.");
+                return;
             }
-            System.out.println("Data loaded successfully.");
+
+            String[] objects = json.substring(1, json.length() - 1).split("},\\s*\\{");
+
+            List<Worker> validWorkers = new ArrayList<>();
+            int index = 0;
+
+            for (String obj : objects) {
+                try {
+                    if (index > 0) obj = "{" + obj;
+                    if (index < objects.length - 1) obj = obj + "}";
+
+                    Worker worker = objectMapper.readValue(obj, Worker.class);
+
+                    if (storageManager.getManagerID().isValidID(worker.getId())
+                            && new ValidationWorker(false).validate(worker)) {
+                        storageManager.getManagerID().addID(worker.getId());
+                        validWorkers.add(worker);
+                    }
+
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                index++;
+            }
+
+            storageManager.getCollection().addAll(validWorkers);
+            System.out.println("Data loaded successfully");
+
         } catch (Exception e) {
-            System.err.println("Error reading JSON data: " + e.getMessage());
+            System.err.println("Error general al leer JSON: " + e.getMessage());
         }
     }
+
 }

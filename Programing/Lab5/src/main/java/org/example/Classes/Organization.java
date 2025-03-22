@@ -1,4 +1,4 @@
-package org.example.Classes;
+package org.example.classes;
 
 /**
  * Represents an organization with basic details.

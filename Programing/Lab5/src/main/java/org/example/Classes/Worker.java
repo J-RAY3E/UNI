@@ -1,8 +1,8 @@
-package org.example.Classes;
+package org.example.classes;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.example.Enums.Position;
-import org.example.Enums.Status;
+import org.example.enums.Position;
+import org.example.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.text.SimpleDateFormat;

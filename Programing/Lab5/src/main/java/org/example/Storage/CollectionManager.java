@@ -1,11 +1,12 @@
-package org.example.Storage;
+package org.example.storage;
 
-import org.example.Classes.Worker;
-import org.example.ReaderManager.ManagerID;
-import org.example.ReaderManager.Parse.ReadJSON;
+import org.example.classes.Worker;
+import org.example.readerManager.ManagerId;
+import org.example.readerManager.parse.ReadJson;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 /**
@@ -18,7 +19,7 @@ public final class CollectionManager {
     private final String classList;
     private final String localFile;
     private final SortedLinkedList<Worker> collection;
-    private final ManagerID managerID;
+    private final ManagerId managerID;
 
     /**
      * Constructs a CollectionManager and initializes storage-related fields.
@@ -27,7 +28,7 @@ public final class CollectionManager {
         this.collection = new SortedLinkedList<>();
         this.dataCreation = LocalDateTime.now();
         this.classList = collection.getClass().toString();
-        this.managerID = new ManagerID();
+        this.managerID = new ManagerId();
         this.localFile = System.getenv("data");
     }
 
@@ -36,9 +37,9 @@ public final class CollectionManager {
      */
     public void load() {
         try {
-            new ReadJSON(this.localFile).loadData(this);
+            new ReadJson(this.localFile).loadData(this);
         } catch (Exception e) {
-            System.out.println("No data loaded in the collection");
+            System.out.println("No data loaded in the collection" + e.getMessage());
         }
     }
 
@@ -54,7 +55,7 @@ public final class CollectionManager {
      * Gets the collection of Worker objects.
      * @return the sorted linked list of workers.
      */
-    public SortedLinkedList<Worker> getCollection() {
+    public List<Worker> getCollection() {
         return collection;
     }
 
@@ -62,7 +63,7 @@ public final class CollectionManager {
      * Gets the ManagerID instance for handling unique identifiers.
      * @return the ManagerID instance.
      */
-    public ManagerID getManagerID() {
+    public ManagerId getManagerID() {
         return managerID;
     }
 

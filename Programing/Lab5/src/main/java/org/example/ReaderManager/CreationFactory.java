@@ -1,4 +1,4 @@
-package org.example.ReaderManager;
+package org.example.readerManager;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -6,12 +6,12 @@ import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Date;
 
-import org.example.ReaderManager.Validators.*;
-import org.example.Classes.*;
-import org.example.Enums.Position;
-import org.example.Enums.Status;
-import org.example.ReaderManager.Inputs.InputValidator;
-import org.example.ReaderManager.Parse.BooleanCondition;
+import org.example.readerManager.validators.*;
+import org.example.classes.*;
+import org.example.enums.Position;
+import org.example.enums.Status;
+import org.example.readerManager.inputs.InputValidator;
+import org.example.readerManager.parse.BooleanCondition;
 
 
 /**

@@ -1,7 +1,7 @@
-package org.example.ReaderManager.Inputs;
+package org.example.readerManager.inputs;
 
-import org.example.ReaderManager.Validators.Validator;
-import org.example.ReaderManager.Parse.ValueParse;
+import org.example.readerManager.validators.Validator;
+import org.example.readerManager.parse.ValueParse;
 
 /**
  * Handles user input validation and parsing.

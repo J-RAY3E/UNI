@@ -1,10 +1,10 @@
-package org.example.CommandsManager.Commands;
+package org.example.commandsManager.commands;
 
-import org.example.CommandsManager.Commands.CommnadClasses.Command;
-import org.example.Enums.RequestState;
-import org.example.ReaderManager.Inputs.Response;
-import org.example.ReaderManager.Parse.WriteJSON;
-import org.example.Storage.CollectionManager;
+import org.example.commandsManager.commands.CommnadClasses.Command;
+import org.example.enums.RequestState;
+import org.example.readerManager.inputs.Response;
+import org.example.readerManager.parse.WriteJson;
+import org.example.storage.CollectionManager;
 
 
 
@@ -31,7 +31,7 @@ public final class Save extends Command {
     @Override
     public Response execute(String... args) {
         try {
-            new WriteJSON(this.collectionManager).saveCollectionToJson();
+            new WriteJson(this.collectionManager).saveCollectionToJson();
             return new Response(this.getClass().getSimpleName(), RequestState.DONE);
         } catch (Exception e) {
             return new Response("Unexpected "+e.getMessage() + " in command " + this.getClass().getSimpleName(), RequestState.ERROR);

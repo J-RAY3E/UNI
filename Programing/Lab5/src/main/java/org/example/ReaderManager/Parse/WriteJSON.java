@@ -1,9 +1,9 @@
-package org.example.ReaderManager.Parse;
+package org.example.readerManager.parse;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.example.Storage.CollectionManager;
+import org.example.storage.CollectionManager;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Handles saving the collection data to a JSON file.
  */
-public final class WriteJSON {
+public final class WriteJson {
 
     private final String inputFileName;
     private final CollectionManager storageManager;
@@ -21,7 +21,7 @@ public final class WriteJSON {
      * Constructs a WriteJSON instance for saving collection data.
      * @param storageManager the CollectionManager containing the data to be saved.
      */
-    public WriteJSON(CollectionManager storageManager) {
+    public WriteJson(CollectionManager storageManager) {
         this.storageManager = storageManager;
         this.inputFileName = storageManager.getLocalFile();
     }
