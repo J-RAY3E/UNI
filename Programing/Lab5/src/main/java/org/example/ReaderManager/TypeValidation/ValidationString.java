@@ -1,4 +1,4 @@
-package org.example.ReaderManager.TypeValidation;
+package ReaderManager.TypeValidation;
 
 public class ValidationString implements Validator<String> {
     int maxlength;

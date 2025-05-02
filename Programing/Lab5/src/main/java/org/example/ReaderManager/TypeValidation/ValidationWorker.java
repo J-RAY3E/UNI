@@ -1,4 +1,4 @@
-package org.example.ReaderManager.TypeValidation;
+package ReaderManager.TypeValidation;
 
 import org.example.Classes.Worker;
 import org.example.Enums.Position;

@@ -1,4 +1,4 @@
-package org.example.CommandsManager.Commands;
+package CommandsManager.Commands;
 
 import org.example.Classes.Worker;
 import org.example.CommandsManager.Commands.CommnadClasses.Command;

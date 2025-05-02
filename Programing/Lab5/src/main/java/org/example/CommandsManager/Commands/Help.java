@@ -1,9 +1,9 @@
-package org.example.commandsManager.commands;
+package CommandsManager.Commands;
 
 import java.util.HashMap;
 import java.util.stream.Collectors;
 
-import org.example.commandsManager.commands.CommnadClasses.Command;
+import CommandsManager.Commands.CommnadClasses.Command;
 import org.example.enums.RequestState;
 import org.example.readerManager.inputs.Response;
 import org.example.storage.CollectionManager;

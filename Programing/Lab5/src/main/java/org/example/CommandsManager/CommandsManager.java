@@ -1,4 +1,4 @@
-package org.example.commandsManager;
+package CommandsManager;
 
 import org.example.commandsManager.commands.*;
 import org.example.commandsManager.commands.CommnadClasses.Command;

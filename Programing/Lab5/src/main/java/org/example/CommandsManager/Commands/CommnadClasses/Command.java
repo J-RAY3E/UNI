@@ -1,4 +1,4 @@
-package org.example.commandsManager.commands.CommnadClasses;
+package CommandsManager.Commands.CommnadClasses;
 
 import org.example.enums.RequestState;
 import org.example.readerManager.inputs.Response;

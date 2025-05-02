@@ -1,4 +1,4 @@
-package org.example.readerManager.inputs;
+package ReaderManager.Inputs;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;

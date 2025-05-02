@@ -1,4 +1,4 @@
-package org.example.ReaderManager.TypeValidation;
+package ReaderManager.TypeValidation;
 
 public class ValidationBoolean implements   Validator<Boolean> {
     Boolean isNull;

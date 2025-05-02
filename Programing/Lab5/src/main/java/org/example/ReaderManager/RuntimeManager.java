@@ -1,4 +1,4 @@
-package org.example.readerManager;
+package ReaderManager;
 
 /**
  * RuntimeManager is responsible for running the command reading and execution process.

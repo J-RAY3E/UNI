@@ -1,4 +1,4 @@
-package org.example.ReaderManager;
+package ReaderManager;
 
 
 import java.time.LocalDate;

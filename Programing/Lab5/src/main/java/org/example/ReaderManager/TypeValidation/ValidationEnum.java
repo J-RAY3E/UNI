@@ -1,4 +1,4 @@
-package org.example.ReaderManager.TypeValidation;
+package ReaderManager.TypeValidation;
 
 import java.util.Arrays;
 

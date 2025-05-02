@@ -1,4 +1,4 @@
-package org.example.readerManager.parse;
+package ReaderManager.Parse;
 
 /**
  * Utility class for parsing boolean conditions from user input.

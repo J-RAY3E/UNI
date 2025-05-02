@@ -1,11 +1,11 @@
-package org.example.readerManager.parse;
+package ReaderManager.Parse;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.example.classes.Worker;
-import org.example.readerManager.inputs.FileInputManager;
-import org.example.readerManager.validators.ValidationWorker;
+import ReaderManager.Inputs.FileInputManager;
+import ReaderManager.Validators.ValidationWorker;
 import org.example.storage.CollectionManager;
 
 import java.io.FileNotFoundException;

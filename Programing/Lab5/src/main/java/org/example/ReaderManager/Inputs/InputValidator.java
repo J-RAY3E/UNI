@@ -1,6 +1,6 @@
-package org.example.readerManager.inputs;
+package ReaderManager.Inputs;
 
-import org.example.readerManager.validators.Validator;
+import ReaderManager.Validators.Validator;
 import org.example.readerManager.parse.ValueParse;
 
 /**

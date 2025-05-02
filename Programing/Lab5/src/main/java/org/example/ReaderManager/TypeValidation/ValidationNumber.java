@@ -1,4 +1,4 @@
-package org.example.ReaderManager.TypeValidation;
+package ReaderManager.TypeValidation;
 
 public class ValidationNumber implements Validator<Number>{
     final Double max;

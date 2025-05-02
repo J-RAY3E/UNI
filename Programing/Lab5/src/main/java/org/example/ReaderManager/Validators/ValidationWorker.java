@@ -1,4 +1,4 @@
-package org.example.readerManager.validators;
+package ReaderManager.Validators;
 
 import org.example.classes.Worker;
 import org.example.enums.Position;

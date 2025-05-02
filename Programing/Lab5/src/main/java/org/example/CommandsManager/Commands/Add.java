@@ -1,7 +1,7 @@
-package org.example.commandsManager.commands;
+package CommandsManager.Commands;
 
 import org.example.classes.Worker;
-import org.example.commandsManager.commands.CommnadClasses.Command;
+import CommandsManager.Commands.CommnadClasses.Command;
 import org.example.enums.RequestState;
 import org.example.readerManager.CreationFactory;
 import org.example.readerManager.inputs.InputValidator;

@@ -1,4 +1,4 @@
-package org.example.commandsManager.commands;
+package CommandsManager.Commands;
 
 import java.io.FileNotFoundException;
 

@@ -1,4 +1,4 @@
-package org.example.readerManager;
+package ReaderManager;
 
 import org.example.readerManager.inputs.Response;
 

@@ -1,4 +1,4 @@
-package org.example.readerManager.inputs;
+package ReaderManager.Inputs;
 
 import org.example.enums.RequestState;
 

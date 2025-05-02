@@ -1,4 +1,4 @@
-package org.example.readerManager.parse;
+package ReaderManager.Parse;
 
 /**
  * Functional interface for parsing string values into other types.

@@ -1,4 +1,4 @@
-package org.example.readerManager.inputs;
+package ReaderManager.Inputs;
 
 /**
  * Interface for input management.
