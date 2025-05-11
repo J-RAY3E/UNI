@@ -1,90 +1,95 @@
 package org.example.ReaderManager;
 
-
-
 import org.example.CommandsManager.CommandsManager;
+import org.example.Enums.MessageType;
 import org.example.Enums.RequestState;
 import org.example.ReaderManager.Inputs.Request;
 import org.example.ReaderManager.Inputs.Response;
-import org.example.connection.Checker;
+import org.example.connection.NotificationManager;
 import org.example.connection.Connection;
 
 import java.io.IOException;
-import java.nio.channels.SelectionKey;
-import java.util.Iterator;
+import java.net.Socket;
 
 /**
- * Handler processes user input, executes commands, and handles responses.
- * It is responsible for creating requests, pulling requests, and managing the flow of the program.
+ * Handler processes incoming client connections using blocking I/O streams.
  */
 public final class ServerHandler {
-
     private final CommandsManager commandsManager;
     private final Connection connection;
-    private Boolean status = true;
+    private volatile boolean running = true;
 
     /**
-     * Constructor for the Handler class.
-     * @param commandsManager The CommandsManager instance to handle commands.
-
+     * Constructor.
+     * @param commandsManager Manager for commands.
+     * @param connection      Connection instance for server-side I/O.
      */
-    public ServerHandler(CommandsManager commandsManager , Connection connection) {
+    public ServerHandler(CommandsManager commandsManager, Connection connection) {
         this.commandsManager = commandsManager;
         this.connection = connection;
+    }
+
+    /**
+     * Starts the server loop: accepts connections and delegates to handler threads.
+     */
+    public void run() {
+        Socket client = null;
+        NotificationManager.getInstance().pushMessage("The server is ready to accept connections", MessageType.INFO);
+        try {
+            connection.establishConnection();
+            while (running) {
+                client = connection.acceptClient();
+                Socket finalClient = client;
+                handleClient(finalClient);
+            }
+        } catch (IOException e) {
+            NotificationManager.getInstance().pushMessage("Error establishing connection with the client: " + e.getMessage(),MessageType.ERROR);
+        }
+        finally {
+            if(client != null){
+                try{client.close();}
+                catch (IOException e) {NotificationManager.getInstance().pushMessage("Error trying to interact with the client: " + e.getMessage(),MessageType.ERROR);}
+            }
+        }
 
     }
 
     /**
-     * Creates a new request by reading user input.
+     * Handles a single client's request/response cycle.
      */
-    public void run() {
-        Checker.getInstance().getLogger().info("Esta disponible a escuchar clientes");
-        while (this.getState()){
-            Response response = null;
-            try {
-                Iterator<SelectionKey> selectionKeys = this.connection.getConnections();
-                while (selectionKeys.hasNext()) {
+    private void handleClient(Socket client) {
+        try {
+            while (running && !client.isClosed()) {
+                byte[] reqBytes = connection.readMessage(client);
+                Request request = Serializer.deserialize(Request.class, reqBytes);
+                Response response = commandsManager.eject(request);
 
-                    SelectionKey selectionKey = selectionKeys.next();
-                    selectionKeys.remove();
-                    if (selectionKey.isAcceptable()) {
+                byte[] respBytes = Serializer.serialize(response);
+                connection.writeMessage(respBytes, client);
 
-                        connection.acceptClient(selectionKey);
-                    }
-                    if (selectionKey.isReadable()) {
-                        System.out.println("se esta leyendo");
-                        byte[] message = connection.readMessage(selectionKey);
-                        Request request = Serializer.deserialize(Request.class,message);
-                        response = this.commandsManager.eject(request);
-                        }
-                    if (response != null) {
-                        System.out.println("SE ESTA ESCRIBIENDO");
-                        connection.writeMessage(Serializer.serialize(response), selectionKey);
-                        if (response.getRequestState() == RequestState.EXIT) {
-                            this.connection.CloseClientConnection(selectionKey);
-                            this.commandsManager.autosave();
-                        }
-                    }
+                if (response.getRequestState() == RequestState.EXIT) {
+                    commandsManager.autosave();
+                    break;
                 }
-            } catch (IOException | ClassNotFoundException e) {
-                System.out.println("Error:" + e.getMessage());
             }
+        } catch (IOException | ClassNotFoundException e) {
+            NotificationManager.getInstance().pushMessage("The client has been disconnected: " + e.getMessage(),MessageType.WARNING);
+        } finally {
+            try {
+                connection.closeClientConnection(client);
+            } catch (IOException ignored) {}
         }
     }
 
     /**
-     * Sets the state of the handler.
-     * @param status The new status to be set.
+     * Stops the server loop.
      */
-    public void setState(Boolean status) {
-        this.status = status;
-    }
-
-    /**
-     * Gets the current state of the handler.
-     * @return The current status.
-     */
-    public boolean getState() {
-        return this.status;
+    public void stop() {
+        running = false;
+        try {
+            connection.closeConnection();
+        } catch (IOException e) {
+            NotificationManager.getInstance().pushMessage("Error trying to close server: " + e.getMessage(),MessageType.ERROR);
+        }
     }
 }

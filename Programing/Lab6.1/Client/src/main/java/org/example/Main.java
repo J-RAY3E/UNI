@@ -6,18 +6,16 @@ import org.example.ReaderManager.Handler;
 import org.example.ReaderManager.ResponseHandler;
 import org.example.ReaderManager.RuntimeManager;
 import org.example.connection.Connection;
+import org.example.connection.NotificationManager;
 
-import java.io.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-
-        Connection connection = new Connection("localhost",9316);
-        connection.establishConnection();
+    public static void main(String[] args) {
+        NotificationManager.getInstance("clientConsole");
         ResponseHandler responseHandler = new ResponseHandler();
         CommandsManager commandsManager = new CommandsManager();
-        Handler handler = new Handler(commandsManager,responseHandler,connection);
-        RuntimeManager runtimeManager = new RuntimeManager(handler);
+        Handler handler = new Handler(commandsManager,responseHandler);
+        RuntimeManager runtimeManager = new RuntimeManager(handler,new Connection());
         runtimeManager.Reader();
 
     }

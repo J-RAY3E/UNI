@@ -27,7 +27,7 @@ public final class Exit extends Command {
 
     @Override
     public Response execute(CollectionManager collectionManager) {
-
+        new Save(0).execute(collectionManager);
         return new Response("Done", RequestState.EXIT);
     }
 }

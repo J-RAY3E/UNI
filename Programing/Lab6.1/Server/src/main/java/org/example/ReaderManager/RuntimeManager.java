@@ -1,7 +1,5 @@
 package org.example.ReaderManager;
 
-import org.example.connection.Checker;
-import org.example.ReaderManager.ConsoleHandler;
 
 /**
  * RuntimeManager is responsible for running the command reading and execution process.
@@ -27,7 +25,6 @@ public final class RuntimeManager {
      */
     public void Reader() {
 
-        Checker.getInstance().getLogger().info("HOLA NO SE POR QUE SE REPITE");
         if(this.clientHandler != null) {
             Runnable clientRunnable = this.clientHandler::run;
             Thread clientPart = new Thread(clientRunnable);

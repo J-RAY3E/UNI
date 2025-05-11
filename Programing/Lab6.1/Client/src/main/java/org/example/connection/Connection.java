@@ -1,63 +1,86 @@
 package org.example.connection;
 
+import org.example.Enums.MessageType;
 
+    import java.io.IOException;
+    import java.net.InetSocketAddress;
+    import java.nio.ByteBuffer;
+    import java.nio.channels.SocketChannel;
+    import java.nio.channels.UnresolvedAddressException;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.io.InputStream;
-import java.io.OutputStream;
+    public class Connection {
+        private Integer PORT;
+        private String host;
+        private SocketChannel socketChannel;
 
+        public Connection() {}
 
-
-public class Connection {
-    private final int PORT;
-    private final String host;
-    private Socket socket;
-    private InputStream input;
-    private OutputStream output;
-
-    public  Connection(String host,int port){
-        this.PORT = port;
-        this.host = host;
-    }
-
-    public void establishConnection() throws IOException {
-        this.socket = new Socket(host, this.PORT);
-        this.input = socket.getInputStream();
-        this.output = socket.getOutputStream();
-    }
-
-    public void writeMessage(byte[] message) throws IOException {
-        this.output.write(message);
-    }
-
-    public byte[] readMessage() throws IOException {
-        byte[] lengthBytes = new byte[4];
-        if (this.input.read(lengthBytes) != 4) {
-            throw new IOException("Failed to read message length");
+        public Connection(String host, Integer port) {
+            this.PORT = port;
+            this.host = host;
         }
 
-        int lengthMessage = ((lengthBytes[0] & 0xFF) << 24) |
-                ((lengthBytes[1] & 0xFF) << 16) |
-                ((lengthBytes[2] & 0xFF) << 8) |
-                (lengthBytes[3] & 0xFF);
-
-        byte[] byteBuffer = new byte[lengthMessage];
-        int bytesRead = 0;
-        while (bytesRead < lengthMessage) {
-            int read = this.input.read(byteBuffer, bytesRead, lengthMessage - bytesRead);
-            if (read == -1) {
-                throw new IOException("Unexpected end of stream");
+        public void establishConnection() {
+            try {
+                this.socketChannel = SocketChannel.open();
+                this.socketChannel.configureBlocking(false);
+                this.socketChannel.connect(new InetSocketAddress(host, PORT));
+                if (this.socketChannel.finishConnect()) {
+                    NotificationManager.getInstance().pushMessage("The connection is available right now", MessageType.INFO);
+                }
+                Thread.sleep(500);
             }
-            bytesRead += read;
+            catch (IOException | UnresolvedAddressException e) {
+                NotificationManager.getInstance().pushMessage("The port is not right: " + e.getMessage(),MessageType.ERROR);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+
         }
-        return byteBuffer;
-    }
 
+        public void writeMessage(byte[] message) throws IOException {
+            int length = message.length;
+            ByteBuffer buffer = ByteBuffer.allocate(4 + length);
+            buffer.putInt(length);
+            buffer.put(message);
+            buffer.flip();
+            while (buffer.hasRemaining()) {
+                socketChannel.write(buffer);
+            }
+            NotificationManager.getInstance().pushMessage("The request was sent, Waiting response...", MessageType.INFO);
+        }
 
-    public void CloseConnection() throws IOException {
-        if(this.socket != null) this.socket.close();
-        if(this.input != null) this.input.close();
-        if(this.output != null) this.output.close();
+        public byte[] readMessage() throws IOException {
+            ByteBuffer lengthBuffer = ByteBuffer.allocate(4);
+            while (lengthBuffer.hasRemaining()) {
+                int read = socketChannel.read(lengthBuffer);
+                if (read == -1) throw new IOException("End of stream while reading length");
+            }
+            lengthBuffer.flip();
+            int length = lengthBuffer.getInt();
+
+            ByteBuffer dataBuffer = ByteBuffer.allocate(length);
+            while (dataBuffer.hasRemaining()) {
+                int read = socketChannel.read(dataBuffer);
+                if (read == -1) throw new IOException("End of stream while reading message");
+            }
+            NotificationManager.getInstance().pushMessage("Response Gotten from the server", MessageType.INFO);
+            return dataBuffer.array();
+        }
+
+        public void closeConnection() throws IOException {
+            if (socketChannel != null && socketChannel.isOpen()) {
+                socketChannel.close();
+            }
+            NotificationManager.getInstance().pushMessage("The connection was close successfully", MessageType.INFO);
+        }
+
+        public boolean isConnected() {
+            try {
+                return socketChannel != null && socketChannel.isOpen() && socketChannel.finishConnect();
+            } catch (IOException e) {
+                return false;
+            }
+        }
     }
-}

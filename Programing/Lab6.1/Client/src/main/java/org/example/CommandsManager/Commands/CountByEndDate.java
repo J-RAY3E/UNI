@@ -6,7 +6,6 @@ import org.example.Enums.RequestState;
 import org.example.ReaderManager.InputValidator;
 import org.example.ReaderManager.Inputs.InputManagerRegistry;
 import org.example.ReaderManager.Inputs.Response;
-import org.example.ReaderManager.StackInputs;
 import org.example.ReaderManager.TypeValidation.ValidationDate;
 import org.example.Storage.CollectionManager;
 
@@ -42,6 +41,6 @@ public final class CountByEndDate extends Command {
 
     @Override
     public void setParameters(String... args){
-        parameter1 = new InputValidator(StackInputs.getCurrentInput()).execute(new ValidationDate(false), LocalDate::parse, args[0]);
+        parameter1 = new InputValidator(InputManagerRegistry.getInstance().getCurrentInput()).execute(new ValidationDate(false), LocalDate::parse, args[0]);
     }
 }

@@ -6,6 +6,7 @@ import org.example.Enums.RequestState;
 import org.example.ReaderManager.Inputs.Response;
 import org.example.Storage.CollectionManager;
 
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 
@@ -31,7 +32,7 @@ public final class FilterStartsWithName extends Command {
     public Response execute(CollectionManager collectionManager ) {
         try {
             String output = collectionManager.getCollection().stream()
-                    .filter(worker -> worker.getName().toLowerCase().startsWith(this.parameter1.toLowerCase()))
+                    .filter(worker -> worker.getName().toLowerCase().startsWith(this.parameter1.toLowerCase())).sorted(Comparator.comparingDouble(Worker::getSalary).reversed())
                     .map(Worker::getInfo)
                     .collect(Collectors.joining("\n"));
 

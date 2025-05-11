@@ -19,19 +19,20 @@ public final class Handler {
 
     private final CommandsManager commandsManager;
     private final ResponseHandler responseHandler;
-    private final Connection connection;
+
     private StringBuffer currentRequest;
     private Boolean status = true;
 
     /**
      * Constructor for the Handler class.
+     *
      * @param commandsManager The CommandsManager instance to handle commands.
      * @param responseHandler The ResponseHandler instance to handle responses.
      */
-    public Handler(CommandsManager commandsManager, ResponseHandler responseHandler, Connection connection) {
+    public Handler(CommandsManager commandsManager, ResponseHandler responseHandler) {
         this.commandsManager = commandsManager;
         this.responseHandler = responseHandler;
-        this.connection = connection;
+
     }
 
     /**
@@ -57,7 +58,7 @@ public final class Handler {
     /**
      * Pulls the request and executes the corresponding command.
      */
-    public void pullRequest() {
+    public void pullRequest(Connection connection) throws IOException {
         if (this.currentRequest.isEmpty()) {
             return;
         }
@@ -72,9 +73,9 @@ public final class Handler {
                 Response response = Serializer.deserialize(Response.class,message);
                 responseHandler.handle(response);
             }catch (IOException e) {
-                System.out.println(e.getMessage());
+                connection.closeConnection();
             } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException(e+ "veamos si aqui esta el error ");
             }
 
         }

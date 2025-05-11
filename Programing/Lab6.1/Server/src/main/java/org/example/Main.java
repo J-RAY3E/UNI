@@ -8,14 +8,13 @@ import org.example.ReaderManager.ServerHandler;
 import org.example.ReaderManager.ResponseHandler;
 import org.example.ReaderManager.RuntimeManager;
 import org.example.Storage.CollectionManager;
+import org.example.connection.NotificationManager;
 import org.example.connection.Connection;
 
 public class Main {
     public static void main(String[] args){
-
-        Connection connection = new Connection("localhost",9316);
-        connection.establishConnection();
-
+        NotificationManager.getInstance("Server");
+        Connection connection = new Connection(9316);
         ResponseHandler consoleServerResponseHandler = new ResponseHandler();
         CollectionManager collectionManager = new CollectionManager();
         collectionManager.load();

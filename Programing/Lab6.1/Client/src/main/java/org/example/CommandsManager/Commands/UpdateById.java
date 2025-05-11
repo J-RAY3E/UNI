@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
  * Command to update an element by its given ID.
  */
 public final class UpdateById extends Command {
-    private Integer parameter1;
+    private Worker parameter1;
     /**
      * Constructs an UpdateById command.
 
@@ -35,16 +35,14 @@ public final class UpdateById extends Command {
     public Response execute(CollectionManager collectionManager) {
         try{
             int idx = IntStream.range(0, collectionManager.getCollection().size())
-                    .filter(i -> collectionManager.getCollection().get(i).getId() == parameter1)
+                    .filter(i -> collectionManager.getCollection().get(i).getId() == parameter1.getId())
                     .findFirst().orElse(-1);
             if(!(idx >= 0)) {
                 return new Response("Error:ID not founded", RequestState.ERROR);
             }
-            Worker worker = new CreationFactory(new InputValidator(InputManagerRegistry.getInstance().getCurrentInput()))
-                    .createWorker(parameter1);
 
-            worker.setCreationDate(collectionManager.getCollection().get(idx).getCreationDate());
-            collectionManager.getCollection().set(idx, worker);
+            parameter1.setCreationDate(collectionManager.getCollection().get(idx).getCreationDate());
+            collectionManager.getCollection().set(idx, parameter1);
 
             return new Response(this.getClass().getSimpleName(), RequestState.DONE);
 
@@ -59,7 +57,8 @@ public final class UpdateById extends Command {
     @Override
     public  void setParameters(String... args){
         try{
-            this.parameter1 = Integer.parseInt(args[0]);
+            this.parameter1 = new CreationFactory(new InputValidator(InputManagerRegistry.getInstance().getCurrentInput()))
+                    .createWorker( Integer.parseInt(args[0]));
         }catch (NumberFormatException e){
             throw  new NumberFormatException("The string given its not possible to be parsed");
         }

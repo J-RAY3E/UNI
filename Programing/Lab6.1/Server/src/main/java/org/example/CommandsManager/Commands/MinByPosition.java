@@ -1,6 +1,7 @@
 package org.example.CommandsManager.Commands;
 
 
+import org.example.Classes.Worker;
 import org.example.CommandsManager.Commands.CommnadClasses.Command;
 import org.example.Enums.RequestState;
 import org.example.ReaderManager.Inputs.Response;
@@ -35,8 +36,8 @@ public final class MinByPosition extends Command {
             if (collectionManager.getCollection().isEmpty()){
                 return new Response("Collection is empty" + this.getClass().getSimpleName(), RequestState.ERROR);
             }
-            return collectionManager.getCollection().stream()
-                    .max(Comparator.comparing(worker -> worker.getPosition().ordinal()))
+            return collectionManager.getCollection().stream().filter(Worker -> Worker.getPosition() != null)
+                    .max(Comparator.comparing(Worker::getPosition))
                     .map(worker -> new Response(worker.getInfo(), RequestState.RETURNED))
                     .orElse(new Response(this.getClass().getName(), RequestState.DONE));
         } catch (Exception e) {

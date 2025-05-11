@@ -1,6 +1,7 @@
 package org.example.CommandsManager.Commands;
 
 
+import org.example.Classes.Worker;
 import org.example.CommandsManager.Commands.CommnadClasses.Command;
 import org.example.Enums.RequestState;
 import org.example.ReaderManager.InputValidator;
@@ -33,7 +34,11 @@ public final class CountByEndDate extends Command {
     @Override
     public Response execute(CollectionManager collectionManager) {
         try {
-            long count = collectionManager.getCollection().stream().filter(Worker -> Worker.getEndDateStr().equals(Date.from(this.parameter1.atStartOfDay(ZoneId.systemDefault()).toInstant()).toString())).count();
+            if (this.parameter1 != null) {
+                long count = collectionManager.getCollection().stream().filter(Worker -> Worker.getEndDateStr().equals(Date.from(this.parameter1.atStartOfDay(ZoneId.systemDefault()).toInstant()).toString())).count();
+                return  new Response(String.format("Total elements in storage: %d .%n ", count), RequestState.RETURNED);
+            }
+            long count = collectionManager.getCollection().stream().filter(Worker -> Worker.getEndDate() == null ).count();
             return  new Response(String.format("Total elements in storage: %d .%n ", count), RequestState.RETURNED);
         } catch (Exception e){
             return new Response(e.getMessage() + " in command"  + this.getClass(), RequestState.ERROR);

@@ -7,6 +7,7 @@ import org.example.ReaderManager.Parse.ReadJson;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -26,7 +27,7 @@ public final class CollectionManager {
      * Constructs a CollectionManager and initializes storage-related fields.
      */
     public CollectionManager() {
-        this.collection = new Storage.SortedLinkedList<Worker>();
+        this.collection = new LinkedList<>();
         this.dataCreation = LocalDateTime.now();
         this.classList = collection.getClass().toString();
         this.managerID = new ManagerId();
