@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2"
+            xmlns:fx="http://javafx.com/fxml/1"
+            prefHeight="600.0" prefWidth="800.0"
+            style="-fx-background-color: rgb(60,60,60);">
+
+    <VBox alignment="CENTER" spacing="15.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+          AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+
+        <VBox fx:id="card" alignment="CENTER" spacing="15.0"
+              prefWidth="350.0" prefHeight="400.0"
+              style="-fx-background-color: rgb(40,40,40);
+                     -fx-border-color: rgb(80,80,80);
+                     -fx-border-width: 1;
+                     -fx-padding: 30;">
+
+            <Label fx:id="title" text="DaRa"
+                   alignment="CENTER"
+                   style="-fx-font-family: 'SansSerif';
+                          -fx-font-size: 28px;
+                          -fx-text-fill: rgb(100,149,237);" />
+
+            <TextField fx:id="usernameField" promptText="Username"
+                       maxWidth="280"
+                       style="-fx-background-color: rgb(50,50,50);
+                              -fx-text-fill: white;
+                              -fx-prompt-text-fill: gray;
+                              -fx-font-family: 'SansSerif';
+                              -fx-font-size: 14px;
+                              -fx-border-color: rgb(100,100,100);
+                              -fx-border-radius: 4;
+                              -fx-pref-height: 45;" />
+
+            <PasswordField fx:id="passwordField" promptText="Password"
+                           maxWidth="280"
+                           style="-fx-background-color: rgb(50,50,50);
+                                  -fx-text-fill: white;
+                                  -fx-prompt-text-fill: gray;
+                                  -fx-font-family: 'SansSerif';
+                                  -fx-font-size: 14px;
+                                  -fx-border-color: rgb(100,100,100);
+                                  -fx-border-radius: 4;
+                                  -fx-pref-height: 45;" />
+
+            <Button fx:id="actionButton" text="Login" onAction="#handleAction"
+                    alignment="CENTER"
+                    style="-fx-background-color: rgb(100,149,237);
+                           -fx-text-fill: white;
+                           -fx-font-family: 'SansSerif';
+                           -fx-font-size: 14px;
+                           -fx-padding: 10 15 10 15;
+                           -fx-max-width: 200;" />
+
+            <Label fx:id="switchLabel" text="Don't have an account?"
+                   alignment="CENTER"
+                   style="-fx-text-fill: rgb(220,220,220);
+                          -fx-font-family: 'SansSerif';
+                          -fx-font-size: 12px;" />
+
+            <Button fx:id="switchButton" text="Register" onAction="#toggleMode"
+                    alignment="CENTER"
+                    style="-fx-background-color: transparent;
+                           -fx-text-fill: rgb(100,149,237);
+                           -fx-font-family: 'SansSerif';
+                           -fx-font-size: 14px;" />
+        </VBox>
+    </VBox>
+</AnchorPane>
