@@ -33,7 +33,9 @@ public final class MinByPosition extends Command {
     @Override
     public Response execute(CollectionManager collectionManager) {
         try {
-            return new Response(collectionManager.minByPosition()+"\n ",RequestState.RETURNED);
+            Response response= new Response(collectionManager.minByPosition().toString()+"\n ",RequestState.RETURNED);
+            response.setReturned(collectionManager.minByPosition());
+            return response ;
         } catch (Exception e) {
             return new Response("Unexpected "+e.getMessage() + " in command " + this.getClass().getSimpleName(), RequestState.ERROR);
         }

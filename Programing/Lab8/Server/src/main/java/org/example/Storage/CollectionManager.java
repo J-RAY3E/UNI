@@ -230,16 +230,18 @@ public boolean add(Worker worker){
         }
     }
 
-    public String minByPosition(){
+    public List<Worker> minByPosition(){
         readWriteLock.readLock().lock();
         try{
             if (this.collection.isEmpty()){
-                return "Collection is empty ";
+                return new ArrayList<Worker>();
             }
-            return this.collection.stream().filter(Worker -> Worker.getPosition() != null)
-                    .max(Comparator.comparing(Worker::getPosition))
-                    .map(Worker::getInfo)
-                    .orElse("The user has no value inserted ");
+            Optional<Worker> maxWorker = this.collection.stream()
+                    .filter(worker -> worker.getPosition() != null)
+                    .max(Comparator.comparing(Worker::getPosition));
+
+            List<Worker> result = maxWorker.map(List::of).orElseGet(List::of);
+            return result;
         }
         finally {
             readWriteLock.readLock().unlock();

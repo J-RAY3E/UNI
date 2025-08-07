@@ -37,12 +37,13 @@ public final class ExecuteFile extends Command {
 
     @Override
     public Response execute(CollectionManager collectionManager) {
-        String fullPath = Paths.get(System.getProperty("user.home"), "scripts", this.parameter1).toString();
+        String fileName = Paths.get(this.parameter1).getFileName().toString();
+            String fullPath = Paths.get(System.getProperty("user.home"), "scripts", fileName).toString();
         if (!FileInputManager.isAvailablePath(fullPath)) {
             return new Response("Error: Not available path" + fullPath, RequestState.ERROR);
         }
         try {
-
+            System.out.println("paso pero no se por que no empieza a leer s necesito ayuda mrd ");
             FileInputManager fileInputManager = new FileInputManager(fullPath);
             InputManagerRegistry.getInstance().addScriptInput(fileInputManager);
             String output = "";
@@ -57,7 +58,7 @@ public final class ExecuteFile extends Command {
             if(output.isEmpty()){
                 return new Response(this.getClass().getSimpleName(), RequestState.DONE);
             }
-            return new Response(output, RequestState.RETURNED);
+            return new Response(output, RequestState.UPDATE);
         } catch (FileNotFoundException e) {
             return new Response("Unexpected "+e.getMessage() + " in command " + this.getClass().getSimpleName(), RequestState.ERROR);
         }

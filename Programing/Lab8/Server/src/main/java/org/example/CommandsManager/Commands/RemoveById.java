@@ -39,7 +39,7 @@ public final class RemoveById extends Command {
             if(removed == null){
                 return new Response(String.format("The element %d was not inserted by the user %s %n",this.parameter1,this.getUsername()), RequestState.ERROR);
             }else if (removed){
-                return new Response(String.format("The element %d has been removed %n",this.parameter1), RequestState.RETURNED);
+                return new Response(String.format("The element %d has been removed %n",this.parameter1), RequestState.UPDATE);
             }
             else{
                 return new Response("No element has been removed %n" , RequestState.DONE);

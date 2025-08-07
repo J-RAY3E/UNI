@@ -36,14 +36,14 @@ public final class CommandsManager {
         loadCommand("exit", new Exit(0), PrivilegeLevel.CLIENT);
         loadCommand("clear", new Clear(0), PrivilegeLevel.CLIENT);
         loadCommand("add", new Add(4), PrivilegeLevel.CLIENT);
-        loadCommand("update_by_id", new UpdateById(1), PrivilegeLevel.CLIENT);
+        loadCommand("update_by_id", new UpdateById(4), PrivilegeLevel.CLIENT);
         loadCommand("remove_last", new RemoveLast(0), PrivilegeLevel.CLIENT);
-        loadCommand("remove_greater", new RemoveGreater(1), PrivilegeLevel.CLIENT);
+        loadCommand("remove_greater", new RemoveGreater(4), PrivilegeLevel.CLIENT);
         loadCommand("remove_by_id", new RemoveById(1), PrivilegeLevel.CLIENT);
         loadCommand("min_by_position", new MinByPosition(0), PrivilegeLevel.CLIENT);
         loadCommand("count_by_end_date", new CountByEndDate(1), PrivilegeLevel.CLIENT);
         loadCommand("execute_file", new ExecuteFile(1), PrivilegeLevel.CLIENT);
-        loadCommand("add_if_max", new AddIfMax(1), PrivilegeLevel.CLIENT);
+        loadCommand("add_if_max", new AddIfMax(4), PrivilegeLevel.CLIENT);
         loadCommand("filter_starts_with_name", new FilterStartsWithName(1), PrivilegeLevel.CLIENT);
         loadCommand("help", new Help(this.commands, 0), PrivilegeLevel.CLIENT);
 

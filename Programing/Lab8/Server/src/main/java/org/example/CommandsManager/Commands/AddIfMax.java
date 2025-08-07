@@ -35,7 +35,7 @@ public final class AddIfMax extends Command {
         this.parameter1.setWhoModificates(this.getUsername());
         boolean added = collectionManager.addMax(this.parameter1);
         if (added) {
-            return new Response(String.format("The element %s was added successfully",this.parameter1.getName()), RequestState.DONE);
+            return new Response(String.format("The element %s was added successfully",this.parameter1.getName()), RequestState.UPDATE);
         }
         return new Response("The element was not added to the data base", RequestState.ERROR);
 

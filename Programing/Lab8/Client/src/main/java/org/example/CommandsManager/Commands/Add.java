@@ -9,6 +9,8 @@ import org.example.Enums.Position;
 import org.example.Enums.Status;
 import org.example.connection.NotificationManager;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
@@ -54,12 +56,18 @@ public final class Add extends Command {
                 worker.setName(fields[1]);
                 worker.setSalary(Integer.parseInt(fields[2]));
                 try {
-                    worker.setCreationDate(LocalDateTime.parse(fields[3]));
+                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+                    worker.setEndDate(formatter.parse(fields[3]));
+                }catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+                try {
+                    worker.setCreationDate(LocalDateTime.parse(fields[4]));
                 } catch (DateTimeParseException e) {
                     worker.setCreationDate(LocalDateTime.now());
                 }
-                worker.setPosition(Position.valueOf(fields[4]));
-                worker.setStatus(Status.valueOf(fields[5]));
+                worker.setPosition(Position.valueOf(fields[5]));
+                worker.setStatus(Status.valueOf(fields[6]));
 
             } else if (part.startsWith(":organization:")) {
                 String[] orgParts = part.replace(":organization:", "").split("\\$");

@@ -36,7 +36,7 @@ public final class RemoveLast extends Command {
             if (collectionManager.getCollection().isEmpty()) {
                 return new Response("Collection is empty.", RequestState.ERROR);
             } else {
-                return new Response(collectionManager.removeLast(this.getUsername()),RequestState.RETURNED);
+                return new Response(collectionManager.removeLast(this.getUsername()),RequestState.UPDATE);
             }
         } catch (Exception e) {
             return new Response("Unexpected "+e.getMessage() + " in command " + this.getClass().getSimpleName(), RequestState.ERROR);

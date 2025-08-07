@@ -39,7 +39,7 @@ public final class UpdateById extends Command {
             this.parameter1.setWhoModificates(this.getUsername());
             Boolean updated = collectionManager.update(this.parameter1);
             if(updated != null && updated){
-                return new Response(String.format("The user %s updated the worker with id %d %n",this.getUsername(),this.parameter1.getId()), RequestState.RETURNED);
+                return new Response(String.format("The user %s updated the worker with id %d %n",this.getUsername(),this.parameter1.getId()), RequestState.UPDATE);
             }
             else if(updated != null){
                 return new Response(String.format("The worker with id %d was not updated %n",this.parameter1.getId()), RequestState.ERROR);

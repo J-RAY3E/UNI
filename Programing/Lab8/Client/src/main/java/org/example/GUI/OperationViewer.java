@@ -1,6 +1,7 @@
 package org.example.GUI;
 
 import org.example.Classes.Worker;
+import org.example.Enums.FormMode;
 import org.example.GUI.Views.DescriptionView;
 import org.example.GUI.Views.EmptyView;
 import org.example.GUI.Views.FormView;
@@ -8,10 +9,12 @@ import org.example.GUI.Views.FormView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.Pane;
 
+import java.util.function.Consumer;
+
 public class OperationViewer extends StackPane {
 
     private final DescriptionView detailsView = new DescriptionView();
-    private final FormView formView = new FormView();
+    private FormView formView = new FormView(FormMode.ADD,null);
     private final EmptyView emptyView = new EmptyView();
 
     public static final String EMPTY = "EMPTY";
@@ -19,14 +22,16 @@ public class OperationViewer extends StackPane {
     public static final String FORM = "FORM";
 
     public OperationViewer() {
-        // Añadimos las vistas a este StackPane
         getChildren().addAll(emptyView, detailsView, formView);
 
-        // Mostrar vacío inicialmente
         showEmpty();
 
-        // Aplica el estilo de fondo gris oscuro
         setStyle("-fx-background-color: #373737;");
+
+        this.detailsView.setOnModify(worker -> {
+            setFormView(new FormView(FormMode.MODIFY,worker));
+            showForm();
+        });
     }
 
     public void showEmpty() {
@@ -59,15 +64,23 @@ public class OperationViewer extends StackPane {
         formView.setManaged(true);
     }
 
+    public void setFormView(FormView newFormView) {
+        if (this.formView != null) getChildren().remove(this.formView);
+        this.formView = newFormView;
+        getChildren().add(this.formView);
+    }
 
-    public void setOnSave(Runnable onSave) {
-
-        formView.setOnSave(onSave);
+    public void setOnDelete(Consumer<Worker> onDelete) {
+        this.detailsView.setOnDelete(onDelete);
     }
 
     public interface ProjectionHandler {
         void onItemSelected(Worker worker);
         void onItemEdited(Worker worker);
         void onNewItem();
+    }
+
+    public FormView getFormView(){
+        return  formView;
     }
 }

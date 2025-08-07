@@ -102,9 +102,9 @@ public final class ServerHandler {
                         }
                         connection.writeMessage(Serializer.serialize(response), client);
 
-                        // Si la operación fue UPDATE, enviamos el resultado del SHOW a todos
+
                         if (updateState == RequestState.UPDATE) {
-                            // Recuperar el usuario autenticado de ese cliente
+
                             UserManager user = clientUserMap.get(client);
                             Request updateRequest = new Request("show", new String[]{}, 0, user);
                             updateRequest.setCommand(new Show(0));

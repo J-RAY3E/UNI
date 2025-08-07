@@ -168,10 +168,12 @@ public final class Worker implements  Comparable<Worker>, Serializable {
 
     public String toCommandString() {
         StringBuilder sb = new StringBuilder();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
         sb.append(":worker:");
         sb.append(id);
         sb.append("$").append(name != null ? name.replace(" ", "_") : "N/A");
         sb.append("$").append(salary);
+        sb.append("$").append(endDate != null ? formatter.format(endDate) : "N/A");
         sb.append("$").append(creationDate != null ? creationDate.toString() : "N/A");
         sb.append("$").append(position != null ? position.toString() : "N/A");
         sb.append("$").append(status != null ? status.toString() : "N/A");

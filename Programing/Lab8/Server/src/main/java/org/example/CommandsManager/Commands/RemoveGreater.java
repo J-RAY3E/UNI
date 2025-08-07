@@ -37,7 +37,7 @@ public final class RemoveGreater extends Command {
     public Response execute(CollectionManager collectionManager) {
         try {
             this.parameter1.setWhoModificates(this.getUsername());
-            return new Response(String.format("%s %n",collectionManager.removeGreaterThan(this.parameter1)), RequestState.RETURNED);
+            return new Response(String.format("%s %n",collectionManager.removeGreaterThan(this.parameter1)), RequestState.UPDATE);
         } catch (Exception e) {
             return new Response("Unexpected "+e.getMessage() + " in command %n" + this.getClass().getSimpleName(), RequestState.ERROR);
         }

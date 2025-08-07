@@ -15,7 +15,7 @@ public class ResponseHandler {
         if (response.getRequestState() == RequestState.UPDATE) {
             NotificationManager.getInstance().pushMessage("Update gotten"+response.getMessage()+response.getRequestState().toString(), MessageType.INFO);
             ViewController.getInstance().loadData(response.getReturned());
-            // Podrías también emitir un evento a la GUI
+
         } else {
 
             queue.offer(response);

@@ -35,7 +35,7 @@ public final class Clear extends Command {
         try {
             boolean cleared = collectionManager.clear(this.getUsername());
             if (cleared){
-                return new Response(this.getClass().getSimpleName(), RequestState.DONE);
+                return new Response(this.getClass().getSimpleName(), RequestState.UPDATE);
             }
             return new Response("The user does no have elements", RequestState.ERROR);
         } catch (Exception e) {

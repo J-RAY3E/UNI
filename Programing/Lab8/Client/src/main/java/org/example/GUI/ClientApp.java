@@ -30,8 +30,9 @@ public class ClientApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Inicializar el viewController con la referencia estática
-        this.viewController = staticController;
 
+        this.viewController = staticController;
+        primaryStage.setMaximized(true);
         rootPane = new BorderPane();
         container = new StackPane();
 
@@ -71,21 +72,16 @@ public class ClientApp extends Application {
     private Pane createMainPanel() {
         BorderPane mainPane = new BorderPane();
 
-        Label welcomeLabel = new Label("Welcome to Dashboard");
-        welcomeLabel.setStyle("-fx-font-size: 18px;");
-        welcomeLabel.setMaxWidth(Double.MAX_VALUE);
-        welcomeLabel.setAlignment(javafx.geometry.Pos.CENTER);
-
-        Button signOutButton = new Button("Sign out");
-        signOutButton.setOnAction(e -> showLogin());
-
         Dashboard dashboard = new Dashboard(viewController);
+        dashboard.setOnLogout(() -> {
+            showLogin();
+            viewController.getHandler().disconnect();
+        });
+
         viewController.setDashboard(dashboard);
 
-        mainPane.setTop(welcomeLabel);
+
         mainPane.setCenter(dashboard.getRoot());
-        mainPane.setBottom(signOutButton);
-        BorderPane.setAlignment(signOutButton, javafx.geometry.Pos.CENTER);
 
         return mainPane;
     }
