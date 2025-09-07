@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PointChecker</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1 id="title">Check the position of your point</h1>
+    </div>
+
+    <div class="content">
+        <div class="image-container">
+            <img src="./src/areas.png" alt="Areas of point" class="area-image">
+        </div>
+        <div class="table-container">
+            <table name="histTable"  class="history-table">
+                <thead>
+                    <tr>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>R</th>
+                        <th>Result</th>
+                        <th>Date</th>
+                        <th>Execution Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Se llenará con JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="form" class="form-group">
+        <div class="check_box_group">
+            <label><input type="checkbox" name="y" value="-3"> -3</label>
+            <label><input type="checkbox" name="y" value="-2"> -2</label>
+            <label><input type="checkbox" name="y" value="-1"> -1</label>
+            <label><input type="checkbox" name="y" value="0"> 0</label>
+            <label><input type="checkbox" name="y" value="1"> 1</label>
+            <label><input type="checkbox" name="y" value="2"> 2</label>
+            <label><input type="checkbox" name="y" value="3"> 3</label>
+            <label><input type="checkbox" name="y" value="4"> 4</label>
+            <label><input type="checkbox" name="y" value="5"> 5</label>
+        </div>
+
+        <label class="input-label">
+            <input type="text" name="x" placeholder="{-3...5}" maxlength="10">
+        </label>
+
+        <div class="check_box_group">
+            <label for="r">Radio R:</label>
+            <select name="rad" id="r">
+                <option value="">Select radius</option>
+                <option value="1">1</option>
+                <option value="1.5">1.5</option>
+                <option value="2">2</option>
+                <option value="2.5">2.5</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="button-group">
+        <input type="submit" class="form-button" onclick="send_()" value="Send">
+        <input type="reset" class="form-button" onclick="restart()" value="Clear">
+    </div>
+
+    <script src="./scrip.js"></script>
+</body>
+</html>
